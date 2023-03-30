@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- jQuery CDN Link -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<title>Manager Login Form</title>
+<style>
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	background-image:
+		url(https://images.pexels.com/photos/3771097/pexels-photo-3771097.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+	background-size: cover;
+	background-attachment: fixed;
+}
+
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center !important;
+	height: 100vh;
+}
+
+.errors {
+	color: red;
+}
+
+.form {
+	width: 350px;
+	height: 400px;
+	background-color: rgba(41, 39, 39, 0.3);
+	box-shadow: 0 5px 30px black;
+}
+
+.btn button {
+	padding: 3px;
+	margin: 30px 0px 40px;
+	border-style: none;
+	background-color: transparent;
+	color: beige;
+	font-size: 18px;
+	font-weight: 550;
+}
+
+.formGroup {
+	display: flex;
+	justify-content: center;
+}
+
+.formGroup input {
+	border: none;
+	width: 80%;
+	border-bottom: 2px solid white;
+	padding: 10px;
+	margin-bottom: 20px;
+	font-size: 14px;
+	font-weight: bold;
+	background-color: transparent;
+	color: white;
+}
+
+input:focus {
+	outline: none !important;
+	border-bottom: 2px solid rgb(91, 243, 131);
+	font-size: 17px;
+	font-weight: bold;
+	color: white;
+}
+
+::placeholder {
+	color: white;
+}
+
+.checkBox {
+	display: flex;
+	justify-content: center;
+	margin: 16px !important;
+}
+
+#checkbox {
+	margin-top: 20px;
+	margin-right: 10px;
+	height: 15px;
+	width: 15px;
+}
+
+.small {
+	text-align: center;
+	color:red;
+}
+
+.text {
+	margin-top: 20px;
+	color: rgb(199, 197, 197);
+	font-size: 13px;
+}
+
+.btn2 {
+	padding: 10px;
+	width: 150px;
+	border-radius: 20px;
+	background-color: rgb(10, 136, 43);
+	border-style: none;
+	color: white;
+	font-weight: 600;
+	margin-top: 10px;
+}
+
+.btn2:hover {
+	background-color: rgba(10, 136, 43, 0.5);
+}
+
+.btn button:hover {
+	border-bottom: 2px solid rgb(91, 243, 131);
+}
+</style>
+</head>
+
+<body>
+	<div>
+
+		<div class="container">
+			<div class="form" style="text-align: center">
+				<div class="btn">
+					<button class="loginBtn">Manager Login</button>
+				</div>
+
+				<form th:action="@{/managerloginPageValidation}"
+					th:object="${manager}" method="post">
+					<div class="formGroup">
+						<input type="email" placeholder="Email ID" name="m_email"
+							autocomplete="off" th:field="*{m_email}" />
+					</div>
+
+					<div class="small">
+						<small th:if="${#fields.hasErrors('m_email')}"
+							th:errorclass="errors" th:errors="*{m_email}"></small> <small
+							th:text="${nouser}"></small>
+					</div>
+
+					<div class="formGroup">
+						<input type="password" id="password" placeholder="Password"
+							name="m_password" autocomplete="off" th:field="*{m_password}" /><br />
+					</div>
+					<div class="small">
+						<small th:if="${#fields.hasErrors('m_password')}"
+							th:errorclass="errors" th:errors="*{m_password}"></small> <small
+							th:text="${nopassword}"></small>
+					</div>
+					<div class="checkBox">
+						<input type="checkbox" name="checkbox" id="checkbox" /> <span
+							class="text" style="color: rgb(250, 243, 235)">Keep me
+							signed in on this device</span>
+					</div>
+					<div class="formGroup">
+						<button type="submit" class="btn2">Login</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
